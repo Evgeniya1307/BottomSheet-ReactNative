@@ -1,6 +1,8 @@
 
+import React from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import BoottomSheet from './components/BoottomSheet';
 
 
 export default function App() {
@@ -8,8 +10,8 @@ export default function App() {
     <GestureHandlerRootView style={{flex:1}}>
     <View style={styles.container}>
      <StatusBar style ="light" />
+    <BoottomSheet/>
     </View>
-    <BootomSheet/>
     </GestureHandlerRootView>
   );
 }
