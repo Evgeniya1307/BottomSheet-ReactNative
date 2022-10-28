@@ -1,4 +1,12 @@
+
 import "react-native-gesture-handler";
+import {
+    BottomSheetModal,
+    BottomSheetModalProvider,
+  } from "@gorhom/bottom-sheet";
+  import { useRef, useState } from "react";
+  import { AntDesign } from "@expo/vector-icons";
+  import { Entypo } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import {
   Button,
@@ -8,14 +16,9 @@ import {
   Text,
   useWindowDimensions,
   View,
+  Image,
+ 
 } from "react-native";
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
-import { useRef, useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 
 export default function App() {
   const [darkmode, setDarkmode] = useState(false);
@@ -35,6 +38,7 @@ export default function App() {
     }, 100);
   }
 
+
   return (
     <BottomSheetModalProvider>
       <View
@@ -43,7 +47,16 @@ export default function App() {
           { backgroundColor: isOpen ? "gray" : "white" },
         ]}
       >
+      
+      <View >{/*img */}
+      <Image
+        style={styles.tinyLogo}
+        source={{
+         uri: 'https://thumbs.dreamstime.com/z/%D0%B4%D0%BE%D0%BC%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BD%D0%B8%D1%86%D0%B0-%D0%B8%D0%BB%D0%B8-%D0%B3%D0%BE%D1%80%D0%BD%D0%B8%D1%87%D0%BD%D0%B0%D1%8F-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-%D0%BA%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B3%D0%BE%D0%B2%D1%8B%D1%85-%D1%83%D1%81%D0%BB%D1%83%D0%B3-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%BE%D0%BC%D0%B0-%D0%BE%D1%84%D0%B8%D1%81%D0%B0-194702110.jpg',}}
+      />
+      </View>
         <Button title="Поиск Горничных..." onPress={handlePresentModal} />
+       
         <StatusBar style="auto" />
         <BottomSheetModal
           ref={bottomSheetModalRef}
@@ -55,7 +68,7 @@ export default function App() {
           <View style={styles.contentContainer}>
             <Text style={[styles.title, { marginBottom: 20 }]}>Дополнительные услуги</Text>
             <View style={styles.row}>
-              <Text style={styles.subtitle}>Чистка пола Роторной машиной</Text>
+              <Text style={styles.subtitle}>Дезинфекционная уборка </Text>
               <Switch
                 value={darkmode}
                 onChange={() => setDarkmode(!darkmode)}
@@ -86,17 +99,25 @@ export default function App() {
               )}
             </Pressable>
             <Pressable style={styles.row} onPress={() => setTheme("lightsOut")}>
-              <Text style={styles.subtitle}>Генеральная уборка</Text>
+              <Text style={styles.subtitle}>Генеральная уборка</Text>  
+        <StatusBar style="auto" />
+
               {theme === "lightsOut" ? (
                 <AntDesign name="checkcircle" size={24} color="#4A98E9" />
               ) : (
                 <Entypo name="circle" size={24} color="#56636F" />
               )}
-            </Pressable>
-          </View>
+            </Pressable> 
+          </View> 
+          <Pressable style={styles.button}>
+          <Button title="Заказать" color="#4A98E9" 
+          onPress={handlePresentModal} />
+         
+         </Pressable>
         </BottomSheetModal>
       </View>
     </BottomSheetModalProvider>
+    
   );
 }
 
@@ -135,4 +156,18 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     width: "100%",
   },
+  button:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'gray',
+  },
+  tinyLogo:{
+    width: 100,
+    height: 100,
+    borderRadius:12
+  }
 });
